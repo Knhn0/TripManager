@@ -43,8 +43,10 @@ void ConfigureServices(IServiceCollection services)
     
     builder.Services.AddTransient<IUserLogic, UserLogic>();
     builder.Services.AddScoped<IUserDomain, UserDomain>();
-    string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    builder.Services.AddDbContext<IDataContext, DataContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
+    builder.Services.AddDbContext<IDataContext, DataContext>(options =>
+    {
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    });
 }
 
 

@@ -1,6 +1,6 @@
-﻿using TripManager.Service.Models;
+﻿using TripManager.Domain.Entities;
 
-namespace TripManager.Service.Interfaces;
+namespace TripManager.Service.Logic;
 
 public interface IUserLogic
 {

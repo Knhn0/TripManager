@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TripManager.Models;
-using TripManager.Service.Interfaces;
-
+using TripManager.Service.Logic;
+using TripManager.Domain.Entities;
 namespace TripManager.Controllers
 {
 
@@ -40,7 +40,7 @@ namespace TripManager.Controllers
                 return BadRequest();
             }
 
-            return Ok(userLogic.Register(new Service.Models.User
+            return Ok(userLogic.Register(new User()
             {
                 Surname = request.Surname,
                 Name = request.Name,
@@ -72,7 +72,7 @@ namespace TripManager.Controllers
                 return Json(BadRequest());
             }
 
-            var response = userLogic.Auth(new Service.Models.User
+            var response = userLogic.Auth(new User()
                 { Email = loginData.Email, Password = loginData.Password });
 
             return response == null ? Json(StatusCode(500)) : Json(response);

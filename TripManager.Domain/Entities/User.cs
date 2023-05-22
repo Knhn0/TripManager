@@ -1,4 +1,4 @@
-﻿namespace TripManager.Service.Models;
+﻿namespace TripManager.Domain.Entities;
 
 public class User
 {

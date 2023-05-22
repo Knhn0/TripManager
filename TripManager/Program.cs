@@ -1,13 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
 using TripManager.DAL;
 using TripManager.Models;
-using TripManager.Service.Implementations;
-using TripManager.Service.Interfaces;
+using TripManager.Service.Logic;
 
 
 var builder = WebApplication.CreateBuilder(args);

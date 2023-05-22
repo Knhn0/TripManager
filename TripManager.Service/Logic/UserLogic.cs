@@ -2,10 +2,10 @@
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using TripManager.DAL;
-using TripManager.Service.Interfaces;
+using TripManager.Domain.Entities;
 using TripManager.Service.Models;
 
-namespace TripManager.Service.Implementations;
+namespace TripManager.Service.Logic;
 
 public class UserLogic : IUserLogic
 {

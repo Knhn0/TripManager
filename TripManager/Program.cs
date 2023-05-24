@@ -37,7 +37,8 @@ void ConfigureServices(IServiceCollection services)
         var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
         config.IncludeXmlComments(xmlPath);
     });
-    
+
+    builder.Services.AddTransient<Seed>();
     builder.Services.AddTransient<IUserLogic, UserLogic>();
     builder.Services.AddScoped<IUserDomain, UserDomain>();
     builder.Services.AddDbContext<IDataContext, DataContext>(options =>
@@ -49,6 +50,21 @@ void ConfigureServices(IServiceCollection services)
 
 
 var app = builder.Build();
+
+if (args.Length == 1 && args[0].ToLower() == "seeddata")
+    SeedData(app);
+
+void SeedData(IHost app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<Seed>();
+        service.SeedDataContext();
+    }
+}
+
 app.UseSwagger();
 app.UseSwaggerUI(config =>
 {

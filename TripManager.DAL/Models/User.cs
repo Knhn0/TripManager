@@ -14,4 +14,5 @@ public class User
     public string Phone { get; set; }
     
     public int? UserType { get; set; }
+    public ICollection<UserCategory> UserCategories { get; set; }
 }

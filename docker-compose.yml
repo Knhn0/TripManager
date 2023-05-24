@@ -1,0 +1,17 @@
+services:
+  app:
+    image: trip-manager
+    command: dotnet run seeddata
+    ports:
+      - 8888:80
+    working_dir: /app
+    
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+      POSTGRES_DB: tripmanager
+    expose:
+      - 5432:5432
